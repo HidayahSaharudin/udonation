@@ -35,12 +35,12 @@
 <nav>
     <ul>
         <div class = "logo">
-            <img src = "Image/Logo.png" alt = "logo" height="70">
+            <img src = "Image/Logo.png" alt = "logo">
+            <span class="add">Masjid Sultan Azlan Shah, Jalan Raja Musa Mahadi, Institut Tadbiran Islam Perak, 31400 Ipoh, Perak, Malaysia 05-5456779</span>
             <li><a class="navi" href="#" onclick="document.location='LoginAccount.html'">LOG KELUAR</a>
             <li><a class="navi" href="#" onclick="document.location='ViewAccount.html' ">AKAUN</a>
             <li><a class="navi" href="#" onclick="document.location='buttonApplicationCommittee.html'">PERMOHONAN</a>
-            <li><a class="navi" href="#" onclick="document.location='createDonation2.html' ">BANTUAN</a>
-            <li><a class="MSAS" href="#">MASJID SULTAN AZLAN SHAH</a>
+            <li><a class="navi" href="#" onclick="document.location='donationList.jsp' ">BANTUAN</a>
         </div>
     </ul>
 </nav>
@@ -83,6 +83,15 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;}
+    .add {
+        position: absolute;
+        left: 90px;
+        width: 270px;
+        border: none;
+        padding: 20px 16px;;
+        font-size: 14px;
+        color: #455a64;
+        font-family: "Bahnschrift", "Courier New", monospace;}
     a, a:hover{
         text-decoration: none;}
     nav a.navi:hover{
@@ -96,80 +105,74 @@
         font-size: 20px;
     }
     .logo img{
-        width: 70px;
+        width: 100px;
+        height: 100px;
         margin-right: 10px;
     }
     ul {
         list-style-type: none;
         overflow: hidden;
         background-color: #BBE9FE;
-        height: 70px;
+        height: 100px;
         width:100%;}
     li {
         float: right;}
     .navi {
         display: block;
-        color: #4d4d4d;
+        color: #455a64;
         font-weight: bold;
         text-align: center;
-        padding: 14px 16px;
+        padding: 30px 16px;
         text-decoration: none;
         margin-top: 10px;
         margin-right: 10px;
     }
     li a.navi:hover {
-        background-color: #4d4d4d;
+        background-color: #617C8D;
+        height: 5px;
     }
     div.a {
         position: relative;
         display: block;
     }
-    .button1 {
+    .button1{
         background-color: #b3e6ff;
+        border-radius: 25px;
         height: 50px;
         width: 100px;
-        padding: 15px 32px;
-        margin: 10px 0;
-        border-bottom-style: groove;
+        padding: 15px 10px;
+        text-align: center;
+        display: inline-block;
         cursor: pointer;
-        border-radius: 25px;
-        padding: 10px;
-        display: inline;
-        margin-left: auto;
-        margin-right:auto;
-        position: absolute;
-        bottom: 8px;
-        right: 16px;
-    }
+        bottom: 23px;
+        margin-left: 1050px;}
     .box1{
         height: 40px;
         width: 800px;
-        font-size: 17px;
-    }
+        font-size: 17px;}
     .box2{
         height: 120px;
         width: 800px;
-        font-size: 17px;
-    }
-    .legend {
+        font-size: 17px;}
+    .legend{
         font-weight: bold;
         font-size: 30px;
         font-family: Arial, Helvetica, sans-serif;
         color: #000000;
         margin-left: auto;
-        margin-right:auto;
-    }
-    .fieldset {
+        margin-right:auto;}
+    .fieldset{
         margin-left: 20%;
         margin-right: 20%;
-        background-color: #b3e6ff;
-    }
-    .form {
-        padding: 40px;
-    }
-    .insideForm {
+        background-color: #b3e6ff;}
+    .form{
+        padding: 40px;}
+    .insideForm{
         align: center;
-        padding: 50px;
-    }
+        padding: 50px;}
+    label {
+        font-family: "Bahnschrift SemiBold", "Courier New", monospace;}
+    .box1, .box2 {
+        font-family: "Bahnschrift Light", "Courier New", monospace;}
 </style>
 </html>
