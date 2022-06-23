@@ -45,12 +45,11 @@
 		</ul>
 	</nav>
 
-<div class="content">
-    <br>
-    <div class="form">
-        <form class="donation" method="post">
-            <fieldset class="fieldset"><legend class="legend">CIPTA JENIS SUMBANGAN</legend>
-        <div class="insideForm">
+<div class="form">
+    <form class="donation" method="post" action="DonationHandler">
+        <fieldset class="fieldset">
+            <legend class="legend">CIPTA JENIS SUMBANGAN</legend>
+            <div class="insideForm">
             <input type="hidden" name="id" value='<%=rs.getString("donationID") %>'/>
             <div class="dataa">
                 <label>Nama Sumbangan: </label>
