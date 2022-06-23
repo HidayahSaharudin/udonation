@@ -8,8 +8,9 @@
 <nav>
     <ul>
         <div class = "logo">
-            <img src = "Image/Logo.png" alt = "logo" height="70" >
-            <li><a class="navi" href="#" onclick="document.location='LoginAccount.html'">LOGKELUAR</a>
+            <img src = "Image/Logo.png" alt = "logo">
+            <span class="add">Masjid Sultan Azlan Shah, Jalan Raja Musa Mahadi, Institut Tadbiran Islam Perak, 31400 Ipoh, Perak, Malaysia 05-5456779</span>
+            <li><a class="navi" href="#" onclick="document.location='LoginAccount.html'">LOG KELUAR</a>
             <li><a class="navi" href="#" onclick="document.location='ViewAccount.html' ">AKAUN</a>
             <li><a class="navi" href="#" onclick="document.location='buttonApplicationCommittee.html'">PERMOHONAN</a>
             <li><a class="navi" href="#" onclick="document.location='donationList.jsp' ">BANTUAN</a>
@@ -21,7 +22,7 @@
     <h3 class="title" >
             <%= "Ahli Jawatankuasa Masjid" %>
         <br>
-        <img class="img" src="Image/msas.png" alt="msas" style="width:100%">
+        <img class="img" src="Image/msas.png" alt="msas">
 </h1>
 </body>
 <style>
@@ -34,6 +35,14 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;}
+    .add {
+        position: absolute;
+        left: 120px;
+        width: 370px;
+        border: none;
+        padding: 18px 16px;;
+        font-size: 20px;
+        font-family: "Bahnschrift", "Courier New", monospace;}
     a, a:hover{
         text-decoration: none;}
     nav a.navi:hover{
@@ -44,17 +53,18 @@
     .logo a{
         display: flex;
         align-items: center;
-        font-size: 20px;
+        font-size: 30px;
     }
     .logo img{
-        width: 70px;
+        width: 130px;
+        height: 130px;
         margin-right: 10px;
     }
     ul {
         list-style-type: none;
         overflow: hidden;
         background-color: #BBE9FE;
-        height: 70px;
+        height: 130px;
         width:100%;}
     li {
         float: right;}
@@ -63,22 +73,23 @@
         color: #4d4d4d;
         font-weight: bold;
         text-align: center;
-        padding: 14px 16px;
+        padding: 40px 16px;
         text-decoration: none;
         margin-top: 10px;
         margin-right: 10px;
     }
     li a.navi:hover {
-        background-color: #4d4d4d;
+        background-color: #617C8D;
     }
     div.a {
         position: relative;
         display: block;
     }
     .img {
-        display: block;
         margin-left: auto;
         margin-right: auto;
+        width:100%;
+        height: 700px;
     }
     .title {
         margin-top: 20px;
