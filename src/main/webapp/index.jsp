@@ -19,7 +19,7 @@
 <h1 class="title" >
     <%= "MASJID SULTAN AZLAN SHAH" %>
     <h3 class="title" >
-            <%= "Ahli Jawatankuasa" %>
+            <%= "Ahli Jawatankuasa Masjid" %>
         <br>
         <img class="img" src="Image/msas.png" alt="msas" style="width:100%">
 </h1>
