@@ -21,7 +21,7 @@
     <h3 class="title" >
             <%= "Ahli Jawatankuasa" %>
         <br>
-        <img class="img" src="msas.png" alt="msas" style="width:100%">
+        <img class="img" src="Image/msas.png" alt="msas" style="width:100%">
 </h1>
 </body>
 <style>
