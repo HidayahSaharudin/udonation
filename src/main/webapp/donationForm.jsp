@@ -5,6 +5,40 @@
 	<title>Create Donation Page</title>
 </head>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<body>
+<nav>
+	<ul>
+		<div class = "logo">
+			<img src = "Image/Logo.png" alt = "logo" height="70" >
+			<li><a class="navi" href="#" onclick="document.location='LoginAccount.html'">LOGOUT</a>
+			<li><a class="navi" href="#" onclick="document.location='ViewAccount.html' ">AKAUN</a>
+			<li><a class="navi" href="#" onclick="document.location='buttonApplicationCommittee.html'">PERMOHONAN</a>
+			<li><a class="navi" href="#" onclick="document.location='createDonation2.html' ">BANTUAN</a>
+			<li><a class="MSAS" href="#">MASJID SULTAN AZLAN SHAH</a>
+		</div>
+	</ul>
+</nav>
+<div class="form">
+<form class="donation" method="post" action="DonationHandler">
+	<fieldset class="fieldset">
+		<legend class="legend">CIPTA JENIS SUMBANGAN</legend>
+		<div class="insideForm">
+			<label>Nama Sumbangan: </label><br>
+			<input class="box" type= "text" name = "donationName" value="" required><br><br>
+			<label>Penerangan Derma dan Butiran Kelayakan: </label><br>
+			<input class="box" type= "text" name = "donationDescription"><br><br>
+			<label>Tarikh Buka: </label><br>
+			<input type= "date" name = "donationOpenDate"><br><br>
+			<label>Tarikh Tutup: </label><br>
+			<input type= "date" name = "donationCloseDate"><br><br>
+		</div>
+	</fieldset>
+	<button type="cancel" class="button1" name="action"  value="cancel" formaction="DonationHandler">KEMBALI</button>
+	<input type="hidden" name="action" value="createDonation">
+	<button type="submit" class="button2" name="submit" >CIPTA</button><br><br>
+</form>
+</div>
+</body>
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 	*{
@@ -114,37 +148,4 @@
 		align: center;
 		padding: 50px;}
 </style>
-<body>
-<nav>
-	<ul>
-		<div class = "logo">
-			<img src = "Logo.png" alt = "logo" height="70" >
-			<li><a class="navi" href="#" onclick="document.location='LoginAccount.html'">LOGOUT</a>
-			<li><a class="navi" href="#" onclick="document.location='ViewAccount.html' ">AKAUN</a>
-			<li><a class="navi" href="#" onclick="document.location='buttonApplicationCommittee.html'">PERMOHONAN</a>
-			<li><a class="navi" href="#" onclick="document.location='createDonation2.html' ">BANTUAN</a>
-			<li><a class="MSAS" href="#">MASJID SULTAN AZLAN SHAH</a>
-		</div>
-	</ul>
-</nav>
-< class="form">
-<form class="donation" method="post" action="DonationHandler">
-	<fieldset class="fieldset">
-		<legend class="legend">CIPTA JENIS SUMBANGAN</legend>
-		<div class="insideForm">
-			<label>Nama Sumbangan: </label><br>
-			<input class="box" type= "text" name = "donationName" value="" required><br><br>
-			<label>Penerangan Derma dan Butiran Kelayakan: </label><br>
-			<input class="box" type= "text" name = "donationDescription"><br><br>
-			<label>Tarikh Buka: </label><br>
-			<input type= "date" name = "donationOpenDate"><br><br>
-			<label>Tarikh Tutup: </label><br>
-			<input type= "date" name = "donationCloseDate"><br><br>
-		</div>
-	</fieldset>
-	<button type="cancel" class="button1" name="action"  value="cancel" formaction="DonationHandler">KEMBALI</button>
-	<input type="hidden" name="action" value="createDonation">
-	<button type="submit" class="button2" name="submit" >CIPTA</button><br><br>
-</form>
-</body>
 </html>

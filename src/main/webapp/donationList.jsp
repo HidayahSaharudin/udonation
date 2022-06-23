@@ -10,40 +10,6 @@
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://kit.fontawesome.com/9bff21277a.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-	<style>
-	table, th, td{
-  	border: 1px solid;
-  	border-collapse: collapse;}
-
-	.title{
-	font-weight: bold;
-	font-size: 30px;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #000000;
-    margin-left: auto;
-    margin-right:auto;}
-
-	.action{
-    background-color: #b3e6ff;
-    font-size: 10px;
-    height: 35px;
-    width: 70px;
-    padding: 10px;
-    margin: 10px 0;
-    border-bottom-style: groove;
-    cursor: pointer;
-    border-radius: 25px;}
-	
-	a{
-    background-color: #b3e6ff;
-    color: #000000;
-    height: 20px;
-    width: 50px;
-    padding: 10px;
-    border-bottom-style: groove;
-    border-radius: 25px;}
-	</style>
 </head>
 <body>
   <sql:setDataSource var="ic" driver="org.postgresql.Driver"
@@ -101,4 +67,37 @@
   
 </div>
 </body>
+<style>
+	table, th, td{
+		border: 1px solid;
+		border-collapse: collapse;}
+
+	.title{
+		font-weight: bold;
+		font-size: 30px;
+		font-family: Arial, Helvetica, sans-serif;
+		color: #000000;
+		margin-left: auto;
+		margin-right:auto;}
+
+	.action{
+		background-color: #b3e6ff;
+		font-size: 10px;
+		height: 35px;
+		width: 70px;
+		padding: 10px;
+		margin: 10px 0;
+		border-bottom-style: groove;
+		cursor: pointer;
+		border-radius: 25px;}
+
+	a{
+		background-color: #b3e6ff;
+		color: #000000;
+		height: 20px;
+		width: 50px;
+		padding: 10px;
+		border-bottom-style: groove;
+		border-radius: 25px;}
+</style>
 </html>
