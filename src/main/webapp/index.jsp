@@ -5,7 +5,7 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Ini Sistem Kami U-DONATION " %>
+<h1><%= "Ini Sistem Kami U-DONATION" %>
 </h1>
 <br/>
 <a href="donationList.jsp"> Donation List</a>
