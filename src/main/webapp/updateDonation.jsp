@@ -44,29 +44,24 @@
 		  </div>
 		</ul>
 	</nav>
-
 <div class="form">
     <form class="donation" method="post" action="DonationHandler">
         <fieldset class="fieldset">
             <legend class="legend">CIPTA JENIS SUMBANGAN</legend>
             <div class="insideForm">
             <input type="hidden" name="id" value='<%=rs.getString("donationID") %>'/>
-            <div class="dataa">
                 <label>Nama Sumbangan: </label>
-                <input type="text" name="donationName" value='<%=rs.getString("donationName") %>' required>
-            </div>
-            <div class="dataa">
+                <input class="box" type="text" name="donationName" value='<%=rs.getString("donationName") %>' required><br>
+
                 <label>Penerangan Derma dan Butiran Kelayakan: </label><br>
-                <input type="text" name="donationDescription" value='<%=rs.getString("donationDescription") %>'>
-            </div>
-            <div class="dataa">
+                <input class="box" type="text" name="donationDescription" value='<%=rs.getString("donationDescription") %>'><br>
+
                 <label>Tarikh Buka: </label><br>
-                <input type="date" name="donationOpenDate" value='<%=rs.getString("donationOpenDate") %>'>
-            </div>
-            <div class="dataa">
+                <input type="date" name="donationOpenDate" value='<%=rs.getString("donationOpenDate") %>'><br>
+
                 <label>Tarikh Tutup: </label><br>
-                <input type="date" name="donationCloseDate" value='<%=rs.getString("donationCloseDate") %>'>
-            </div>
+                <input type="date" name="donationCloseDate" value='<%=rs.getString("donationCloseDate") %>'><br>
+
         </div>
             <%} %>
 
