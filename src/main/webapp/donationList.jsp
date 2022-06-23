@@ -77,8 +77,6 @@
 			</c:forEach>
 		</table>
 	</div>
-	<br><br>
-	<a href=donationForm.jsp>Tambah</a>
 	<br><br><br>
 </div>
 </body>
