@@ -37,11 +37,11 @@
         box-sizing: border-box;}
     .add {
         position: absolute;
-        left: 120px;
-        width: 370px;
+        left: 90px;
+        width: 270px;
         border: none;
-        padding: 18px 16px;;
-        font-size: 20px;
+        padding: 20px 16px;;
+        font-size: 14px;
         font-family: "Bahnschrift", "Courier New", monospace;}
     a, a:hover{
         text-decoration: none;}
@@ -53,18 +53,18 @@
     .logo a{
         display: flex;
         align-items: center;
-        font-size: 30px;
+        font-size: 20px;
     }
     .logo img{
-        width: 130px;
-        height: 130px;
+        width: 100px;
+        height: 100px;
         margin-right: 10px;
     }
     ul {
         list-style-type: none;
         overflow: hidden;
         background-color: #BBE9FE;
-        height: 130px;
+        height: 100px;
         width:100%;}
     li {
         float: right;}
@@ -73,13 +73,14 @@
         color: #4d4d4d;
         font-weight: bold;
         text-align: center;
-        padding: 40px 16px;
+        padding: 30px 16px;
         text-decoration: none;
         margin-top: 10px;
         margin-right: 10px;
     }
     li a.navi:hover {
         background-color: #617C8D;
+        height: 5px;
     }
     div.a {
         position: relative;
@@ -88,8 +89,8 @@
     .img {
         margin-left: auto;
         margin-right: auto;
-        width:100%;
-        height: 700px;
+        width:800px;
+        height: 400px;
     }
     .title {
         margin-top: 20px;
