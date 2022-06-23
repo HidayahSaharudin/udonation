@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="U-Donation:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>U-Donation</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="udonation-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="U-Donation:war exploded" />
+    </root>
+  </artifact>
+</component>
