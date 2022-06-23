@@ -42,6 +42,7 @@
         border: none;
         padding: 20px 16px;;
         font-size: 14px;
+        color: #455A64;
         font-family: "Bahnschrift", "Courier New", monospace;}
     a, a:hover{
         text-decoration: none;}
@@ -70,7 +71,7 @@
         float: right;}
     .navi {
         display: block;
-        color: #4d4d4d;
+        color: #455A64;
         font-weight: bold;
         text-align: center;
         padding: 30px 16px;
