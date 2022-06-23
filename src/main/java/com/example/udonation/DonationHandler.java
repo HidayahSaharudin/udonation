@@ -95,7 +95,7 @@ public class DonationHandler extends HttpServlet {
 
     private void updateDonation(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("donationID"));
+        int id = Integer.parseInt(request.getParameter("id"));
         String donationName = request.getParameter("donationName");
         String donationDescription = request.getParameter("donationDescription");
         String donationOpenDate = request.getParameter("donationOpenDate");

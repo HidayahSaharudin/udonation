@@ -51,7 +51,7 @@
         <form class="donation" method="post">
             <fieldset class="fieldset"><legend class="legend">CIPTA JENIS SUMBANGAN</legend>
         <div class="insideForm">
-            <input type="hidden" name="donationId" value='<%=rs.getString("donationID") %>'/>
+            <input type="hidden" name="id" value='<%=rs.getString("donationID") %>'/>
             <div class="dataa">
                 <label>Nama Sumbangan: </label>
                 <input type="text" name="donationName" value='<%=rs.getString("donationName") %>' required>
