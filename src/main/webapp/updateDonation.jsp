@@ -58,7 +58,7 @@
                 <input class="box1" type="date" name="donationOpenDate" value='<%=rs.getString("donationOpenDate") %>'><br><br>
                 <label>Tarikh Tutup: </label><br><br>
                 <input class="box1" type="date" name="donationCloseDate" value='<%=rs.getString("donationCloseDate") %>'><br><br>
-            </div>
+            </div></fieldset>
             <%} %>
             <div id="mybutton" class="button">
                 <!-- <button type="cancel" name="action"  value="cancel" formaction="DonationHandler">BATAL</button> -->
@@ -66,10 +66,9 @@
                 <button class="button1" type="submit" formaction="DonationHandler" onclick="return confirm('Anda pasti untuk kemaskini?');">KEMASKINI</button>
                 <br><br>
             </div>
-        </fieldset>
     </form>
 </div>
-</div>
+
 <br><br><br>
 </body>
 <style>
