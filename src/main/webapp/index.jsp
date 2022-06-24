@@ -18,7 +18,7 @@
     </ul>
 </nav>
 <h1 class="title" >
-    <%= "MASJID SULTAN AZLAN SHAH" %>
+    <%= "MASJID SULTAN AZLAN SHAH IPOH" %>
     <h3 class="title" >
             <%= "Ahli Jawatankuasa Masjid" %>
         <br>
