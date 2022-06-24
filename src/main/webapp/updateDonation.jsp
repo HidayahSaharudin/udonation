@@ -51,9 +51,9 @@
             <div class="insideForm">
                 <input type="hidden" name="id" value='<%=rs.getString("donationID") %>'/>
                 <label>Nama Sumbangan: </label><br><br>
-                <textarea class="box1" id="donationName" rows="50" cols="100" name="donationName" value='<%=rs.getString("donationName") %>' required></textarea><br><br>
+                <textarea type="text" class="box1" id="donationName" rows="50" cols="100" name="donationName" value='<%=rs.getString("donationName") %>' required></textarea><br><br>
                 <label>Penerangan Derma dan Butiran Kelayakan: </label><br><br>
-                <textarea class="box2" id="donationDescription" name="donationDescription" rows="50" cols="500" value='<%=rs.getString("donationDescription") %>' required></textarea><br><br
+                <textarea type="text" class="box2" id="donationDescription" name="donationDescription" rows="50" cols="500" value='<%=rs.getString("donationDescription") %>' required></textarea><br><br
                 <label>Tarikh Buka: </label><br><br>
                 <input class="box1" type="date" name="donationOpenDate" value='<%=rs.getString("donationOpenDate") %>'><br><br>
                 <label>Tarikh Tutup: </label><br><br>
