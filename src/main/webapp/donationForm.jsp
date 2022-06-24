@@ -24,7 +24,7 @@
 			<legend class="legend">CIPTA JENIS BANTUAN</legend>
 			<div class="insideForm">
 				<label>Nama Sumbangan: </label><br><br>
-				<textarea class="box1" id="donationName" rows="50" cols="100" name = "donationName" value="" required></textarea><br><br>
+				<textarea class="box1" id="donationName" rows="50" cols="100" name = "donationName" value='' required></textarea><br><br>
 				<label>Penerangan Derma dan Butiran Kelayakan: </label><br><br>
 				<textarea class="box2" id="donationDescription" rows="50" cols="500" name = "donationDescription"></textarea><br><br>
 				<label>Tarikh Buka: </label><br><br>
