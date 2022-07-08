@@ -55,43 +55,44 @@ public class ApplicantHandler extends HttpServlet {
         String action = request.getParameter("action");
         try {
             switch (action) {
-                case "create":
+                case "createApplicant":
                     createApplicant(request,response);
+                    break;
+
+                case "createSpouse":
                     createSpouse(request,response);
+                    break;
+
+                case "createDependent":
                     createDependent(request,response);
                     break;
-                case "update":
-                    //nak delete parent kene delete child dulu
-                    updateSpouse(request,response);
-                    updateDependent(request,response);
+
+                case "updateApplicant":
+                    //nak parent kene delete child dulu
+                    deleteSpouse(request,response);
+                    deleteDependent(request,response);
                     updateApplicant(request,response);
                     break;
 
-                case "delete":
+                case "deleteApplicant":
                     //nak delete parent kene delete child dulu
                     deleteSpouse(request,response);
                     deleteDependent(request,response);
                     deleteApplicant(request,response);
                     break;
 
-             //delete child sahaja
-			case "updateSpouse":
-				updateSpouse(request,response);
-				break;
-			case "updateDependent":
-				updateDependent(request,response);
-				break;
-			case "deleteSpouse":
-				deleteSpouse(request,response);
-				break;
-			case "deleteDependent":
-				deleteDependent(request,response);
-				break;
+                case "deleteSpouse":
+                    deleteSpouse(request,response);
+                    break;
+                //delete child sahaja
+                case "deleteDependent":
+                    deleteDependent(request,response);
+                    break;
             }
+
         } catch (SQLException e) {
             throw new ServletException(e);
         }
-
 
     }
     private void createApplicant(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
@@ -106,24 +107,25 @@ public class ApplicantHandler extends HttpServlet {
         String applicantState = request.getParameter("applicantState");
         String applicantEmploymentType = request.getParameter("applicantEmploymentType");
         Applicant applicant;
-        if(applicantEmploymentType.equals("Student"))
+        if(applicantEmploymentType.equalsIgnoreCase("Student"))
         {
             String studentLevel = request.getParameter("studentLevel");
             String studentInstitution = request.getParameter("studentInstitution");
             applicant = new Student(applicantID,applicantName,applicantPhoneNumber,applicantEmail,applicantAddress,applicantCity,applicantPostcode,applicantState,applicantEmploymentType,studentLevel,studentInstitution);
             studentDao.insertStudent((Student) applicant);
         }
-        else if(applicantEmploymentType.equals("Employee"))
+        else if(applicantEmploymentType.equalsIgnoreCase("Employee"))
         {
             String employeeOccupation = request.getParameter("employeeOccupation");
             Double employeeSalary = Double.parseDouble(request.getParameter("employeeSalary"));
             applicant = new Employee(applicantID,applicantName,applicantPhoneNumber,applicantEmail,applicantAddress,applicantCity,applicantPostcode,applicantState,applicantEmploymentType,employeeOccupation,employeeSalary);
             employeeDao.insertEmployee((Employee) applicant);
         }
-
-        applicant = new Applicant(applicantID,applicantName,applicantPhoneNumber,applicantEmail,applicantAddress,applicantCity,applicantPostcode,applicantState,applicantEmploymentType);
-        applicantDao.insertApplicant(applicant);
-
+        else {
+            applicant = new Applicant(applicantID, applicantName, applicantPhoneNumber, applicantEmail, applicantAddress, applicantCity, applicantPostcode, applicantState, applicantEmploymentType);
+            applicantDao.insertApplicant(applicant);
+        }
+        response.sendRedirect("ApplicantDetails.jsp");
     }
     private void updateApplicant(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
 
@@ -170,7 +172,7 @@ public class ApplicantHandler extends HttpServlet {
         else
             applicantDao.deleteApplicant(applicantID);
 
-        response.sendRedirect("MainMenu.jsp");
+        response.sendRedirect("index.jsp");
         //set null dekat child table, which are spouse dan dependent
     }
 
@@ -185,24 +187,14 @@ public class ApplicantHandler extends HttpServlet {
 
         Spouse spouse = new Spouse(spouseID,spouseName,spousePhoneNumber,spouseOccupation,spouseSalary,applicantID);
         spouseDao.insertSpouse(spouse);
+        response.sendRedirect("SpouseDetails.jsp");
     }
 
-    private void updateSpouse(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
-        String spouseID = request.getParameter("spouseID");
-        String spouseName = request.getParameter("spouseName");
-        String spousePhoneNumber = request.getParameter("spousePhoneNumber");
-        String spouseOccupation = request.getParameter("spouseOccupation");
-        Double spouseSalary = Double.parseDouble(request.getParameter("spouseSalary"));
-        String applicantID = request.getParameter("applicantID");
-
-        String existingID = request.getParameter("existingID");
-        Spouse spouse = new Spouse(spouseID,spouseName,spousePhoneNumber,spouseOccupation,spouseSalary,applicantID);
-        spouseDao.updateSpouse(spouse,existingID);
-    }
     private void deleteSpouse(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException
     {
-        String spouseID = request.getParameter("spouseID");
+        String spouseID = request.getParameter("applicantID");
         spouseDao.deleteSpouse(spouseID);
+        response.sendRedirect("SpouseDetails.jsp");
 
     }
     private void createDependent(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
@@ -214,23 +206,13 @@ public class ApplicantHandler extends HttpServlet {
 
         Dependent dependent = new Dependent(dependentID,dependentName,dependentRelationship,applicantID);
         dependentDao.insertDependent(dependent);
-        response.sendRedirect("ApplicantDetails.jsp");
+        response.sendRedirect("DependentDetails.jsp");
     }
 
-    private void updateDependent(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
-
-        String dependentID = request.getParameter("dependentID");
-        String dependentName = request.getParameter("dependentName");
-        String dependentRelationship = request.getParameter("dependentRelationship");
-        String applicantID = request.getParameter("applicantID");
-
-        String existingID = request.getParameter("existingID");
-        Dependent dependent = new Dependent(dependentID,dependentName,dependentRelationship,applicantID);
-        dependentDao.updateDependent(dependent,existingID);
-    }
     private void deleteDependent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException
     {
-        String dependentID =request.getParameter("dependentID");
+        String dependentID =request.getParameter("applicantID");
         dependentDao.deleteDependent(dependentID);
+        response.sendRedirect("DependentDetails.jsp");
     }
 }

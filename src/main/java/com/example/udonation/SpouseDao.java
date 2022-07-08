@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 import static java.lang.System.out;
 public class SpouseDao {
-    String dbURL = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-    String user = "hlcietwdsgkwyq";
-    String pass = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+    private final String dbURL = "jdbc:postgresql://localhost:5432/udonation";
+    private final String user = "postgres";
+    private final String pass = "syauqi2826";
 
     protected Connection getConnection() {
         Connection con = null;
@@ -56,31 +56,11 @@ public class SpouseDao {
     public boolean deleteSpouse(String id) throws SQLException{
         boolean rowDeleted;
         try(Connection con = getConnection();
-            PreparedStatement statement = con.prepareStatement("delete from spouse where spouseID = ?;");){
+            PreparedStatement statement = con.prepareStatement("delete from spouse where applicantID = ?;");){
             statement.setString(1, id);
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;
     }
 
-    //update Spouse
-    public void updateSpouse(Spouse spouse,String id) throws SQLException{
-        try(Connection con = getConnection();
-            PreparedStatement statement = con.prepareStatement
-                    ("update spouse set spouseID = ?, spouseName = ?, spousePhoneNumber = ?, spouseOccupation = ?, spouseSalary = ?  where spouseID = ?;")){
-
-            statement.setString(1, spouse.getSpouseID());
-            statement.setString(2, spouse.getSpouseName());
-            statement.setString(3, spouse.getSpousePhoneNumber());
-            statement.setString(4, spouse.getSpouseOccupation());
-            statement.setDouble(5, spouse.getSpouseSalary());
-            statement.setString(6, id);
-
-            statement.executeUpdate() ;
-        }
-
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

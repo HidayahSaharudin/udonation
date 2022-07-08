@@ -3,12 +3,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import static java.lang.System.out;
 //import java.util.ArrayList;
 //import java.util.List;
 //import java.sql.*;
 
-import static java.lang.System.out;
-public class DependentDao {
+public class ApplicationDao {
     private final String dbURL = "jdbc:postgresql://localhost:5432/udonation";
     private final String user = "postgres";
     private final String pass = "syauqi2826";
@@ -28,19 +29,19 @@ public class DependentDao {
         return con;
 
     }
-    //insert Dependent
-    public void insertDependent(Dependent dependent) throws SQLException {
+    public void insertApplication (Application application) throws SQLException {
 
         // try-with-resource statement will auto close the connection.
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement
-                     ("INSERT INTO DEPENDENT"+"(dependentID,dependentName,dependentRelationship,applicantID) VALUES"+"(?,?,?,?);"))
+                     ("INSERT INTO APPLICATION"+"(applicationID,applicationDate,applicationTime,applicationStatus,applicantID,donationID,committeeID) VALUES"+"(nextval('applicationid_seq'),?,?,?,?,?,?);"))
         {
-            preparedStatement.setString(1, dependent.getDependentID());
-            preparedStatement.setString(2, dependent.getDependentName());
-            preparedStatement.setString(3, dependent.getDependentRelationship());
-            preparedStatement.setString(4, dependent.getApplicantID());
-
+            preparedStatement.setDate(1, application.getApplicationDate());
+            preparedStatement.setTime(2, application.getApplicationTime());
+            preparedStatement.setString(3, application.getApplicationStatus());
+            preparedStatement.setString(4, application.getApplicantID());
+            preparedStatement.setInt(5, application.getDonationID());
+            preparedStatement.setString(6, application.getCommitteeID());
             out.println(preparedStatement);
             preparedStatement.executeUpdate();
         }
@@ -48,16 +49,4 @@ public class DependentDao {
             e.printStackTrace();
         }
     }
-
-    //delete Dependent
-    public boolean deleteDependent(String id) throws SQLException{
-        boolean rowDeleted;
-        try(Connection con = getConnection();
-            PreparedStatement statement = con.prepareStatement("delete from dependent where applicantID = ?;");){
-            statement.setString(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
-        }
-        return rowDeleted;
-    }
-
 }
