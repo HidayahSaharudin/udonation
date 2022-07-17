@@ -67,7 +67,7 @@ public class ApplicantHandler extends HttpServlet {
   	        session.removeAttribute("applicantID");
   	        session.removeAttribute("applicantName");
   	        session.invalidate();
-  	        response.sendRedirect("Index.jsp");
+  	        response.sendRedirect("index.jsp");
   	}
 
     /**

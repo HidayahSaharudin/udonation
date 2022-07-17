@@ -67,7 +67,7 @@ public class CommitteeHandler extends HttpServlet {
 	        session.removeAttribute("committeeID");
 	        session.removeAttribute("committeeName");
 	        session.invalidate();
-	        response.sendRedirect("Index.jsp");
+	        response.sendRedirect("index.jsp");
 	}
     
 	/**
@@ -165,7 +165,7 @@ public class CommitteeHandler extends HttpServlet {
     	//String committeeID=(String)session.getAttribute("committeeID"); 
         String committeeID = request.getParameter("committeeID");
         cd.deleteCommittee(committeeID);
-        response.sendRedirect("Index.jsp");
+        response.sendRedirect("index.jsp");
     }
     
     public void loginCommittee(HttpServletRequest request, HttpServletResponse response)
