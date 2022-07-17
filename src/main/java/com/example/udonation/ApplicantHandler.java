@@ -242,9 +242,9 @@ public class ApplicantHandler extends HttpServlet {
 	    Connection con = null;
     	try {
     		Class.forName("org.postgresql.Driver");
-    	    String dbURL = "jdbc:postgresql://localhost:5432/udonation";
-    	    String user = "postgres";
-    	    String pass = "syauqi2826";
+    	    String dbURL = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
+    	    String user = "hlcietwdsgkwyq";
+    	    String pass = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
     	    con = DriverManager.getConnection(dbURL,user, pass);
     	    
     	    String sql ="SELECT * From applicant";
