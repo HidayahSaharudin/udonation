@@ -1,8 +1,13 @@
 package com.example.udonation;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.System.out;
 //import java.util.ArrayList;
@@ -10,9 +15,9 @@ import static java.lang.System.out;
 //import java.sql.*;
 
 public class ApplicationDao {
-    private final String dbURL = "jdbc:postgresql://localhost:5432/udonation";
-    private final String user = "postgres";
-    private final String pass = "syauqi2826";
+    private final String dbURL = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
+    private final String user = "hlcietwdsgkwyq";
+    private final String pass = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
 
     protected Connection getConnection() {
         Connection con = null;
@@ -42,6 +47,57 @@ public class ApplicationDao {
             preparedStatement.setString(4, application.getApplicantID());
             preparedStatement.setInt(5, application.getDonationID());
             preparedStatement.setString(6, application.getCommitteeID());
+            out.println(preparedStatement);
+            
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    //list application based on donationID
+    public List<Application> selectList(int donationID) throws SQLException {
+
+    	List<Application> applications = new ArrayList<>();
+        // try-with-resource statement will auto close the connection.
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement
+                     ("select * from application where donationID = ?"))
+        {
+            preparedStatement.setInt(1, donationID);
+            out.println(preparedStatement);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+            	int applicationID = rs.getInt("applicationID");
+            	Date  applicationDate = rs.getDate("applicationDate");
+            	Time  applicationTime = rs.getTime("applicationTime");
+            	String  applicationStatus = rs.getString("applicationStatus");
+            	String  applicantID = rs.getString("applicantID");
+            	String  committeeID = rs.getString("committeeID");
+            	
+            	applications.add(new Application(applicationID,applicationDate,applicationTime,applicationStatus,applicantID,donationID,committeeID));
+            	
+            }
+            
+            
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return applications;
+    }
+    
+    public void verifyApplication (Application application) throws SQLException {
+
+        // try-with-resource statement will auto close the connection.
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement
+                     ("update application set applicationStatus = 'Lulus', committeeID = ? where applicationID = ?;"))
+        {
+            preparedStatement.setString(1, application.getCommitteeID());
+            preparedStatement.setInt(2, application.getApplicationID());
             out.println(preparedStatement);
             preparedStatement.executeUpdate();
         }

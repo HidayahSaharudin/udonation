@@ -1,8 +1,6 @@
 package com.example.udonation;
 
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 public class Donation {
 

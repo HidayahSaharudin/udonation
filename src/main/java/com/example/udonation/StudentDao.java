@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import static java.lang.System.out;
 
 public class StudentDao {
-    private final String dbURL = "jdbc:postgresql://localhost:5432/udonation";
-    private final String user = "postgres";
-    private final String pass = "syauqi2826";
+    private final String dbURL = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
+    private final String user = "hlcietwdsgkwyq";
+    private final String pass = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
 
     protected Connection getConnection() {
         Connection con = null;
@@ -29,12 +29,13 @@ public class StudentDao {
         return con;
 
     }
-    public void insertStudent (Student  applicant) throws SQLException {
+    public void createStudent (Student  applicant) throws SQLException {
 
         // try-with-resource statement will auto close the connection.
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement
-                     ("INSERT INTO student"+"(applicantID,applicantName,applicantPhoneNumber,applicantEmail,applicantAddress,applicantCity,applicantPostcode,applicantState,applicantEmploymentType,studentLevel,studentInstitution) VALUES"+"(?,?,?,?,?,?,?,?,?,?,?);"))
+                     ("INSERT INTO STUDENT"+"(applicantID,applicantName,applicantPhoneNumber,applicantEmail,applicantAddress,applicantCity,applicantPostcode,"
+                     		+ "applicantState,applicantEmploymentType,applicantPassword,studentLevel,studentInstitution) VALUES"+"(?,?,?,?,?,?,?,?,?,?,?,?);"))
         {
             preparedStatement.setString(1, applicant.getApplicantID());
             preparedStatement.setString(2, applicant.getApplicantName());
@@ -45,8 +46,9 @@ public class StudentDao {
             preparedStatement.setInt(7, applicant.getApplicantPostcode());
             preparedStatement.setString(8, applicant.getApplicantState());
             preparedStatement.setString(9, applicant.getApplicantEmploymentType());
-            preparedStatement.setString(10, applicant.getStudentLevel());
-            preparedStatement.setString(11, applicant.getStudentInstitute());
+            preparedStatement.setString(10, applicant.getApplicantPassword());
+            preparedStatement.setString(11, applicant.getStudentLevel());
+            preparedStatement.setString(12, applicant.getStudentInstitution());
             out.println(preparedStatement);
             preparedStatement.executeUpdate();
         }
@@ -80,7 +82,7 @@ public class StudentDao {
             statement.setString(7, applicant.getApplicantState());
             statement.setString(8, applicant.getApplicantEmploymentType());
             statement.setString(9, applicant.getStudentLevel());
-            statement.setString(10, applicant.getStudentInstitute());
+            statement.setString(10, applicant.getStudentInstitution());
             statement.setString(11, applicant.getApplicantID());
             statement.executeUpdate() ;
         }

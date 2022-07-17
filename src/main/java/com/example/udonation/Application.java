@@ -8,25 +8,34 @@ public class Application {
     private LocalTime t = LocalTime.now();
     private LocalDate d = LocalDate.now();
 
+    public int applicationID; //pakai nextval
     public Date applicationDate = Date.valueOf(d);
     public Time applicationTime = Time.valueOf(t);
-    public String applicationStatus;
+    public String applicationStatus = "Sedang diproses";
+    
     public String applicantID;
-    public int applicationID = Integer.parseInt(applicantID.substring(5,13));
     public int donationID;
-    public String committeeID;
+    public String committeeID = null;
+    
+    
 
-    public Application(Date applicationDate, Time applicationTime, String applicationStatus, String applicantID, int applicationID, int donationID, String committeeID) {
-        this.applicationDate = applicationDate;
-        this.applicationTime = applicationTime;
-        this.applicationStatus = applicationStatus;
-        this.applicantID = applicantID;
-        this.applicationID = applicationID;
-        this.donationID = donationID;
-        this.committeeID = committeeID;
-    }
+    public Application() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public Date getApplicationDate() {
+	public Application(int applicationID, Date applicationDate, Time applicationTime, String applicationStatus,
+			String applicantID, int donationID, String committeeID) {
+		super();
+		this.applicationID = applicationID;
+		this.applicationDate = applicationDate;
+		this.applicationTime = applicationTime;
+		this.applicationStatus = applicationStatus;
+		this.applicantID = applicantID;
+		this.donationID = donationID;
+		this.committeeID = committeeID;
+	}
+
+	public Date getApplicationDate() {
         return applicationDate;
     }
 

@@ -10,8 +10,10 @@ public class Applicant {
     public int applicantPostcode;
     public String applicantState;
     public String applicantEmploymentType;
+    public String applicantPassword;
 
-    public Applicant(String applicantID, String applicantName, String applicantPhoneNumber, String applicantEmail, String applicantAddress, String applicantCity, int applicantPostcode, String applicantState, String applicantEmploymentType) {
+
+    public Applicant(String applicantID, String applicantName, String applicantPhoneNumber, String applicantEmail, String applicantAddress, String applicantCity, int applicantPostcode, String applicantState, String applicantEmploymentType, String applicantPassword) {
         this.applicantID = applicantID;
         this.applicantName = applicantName;
         this.applicantPhoneNumber = applicantPhoneNumber;
@@ -21,7 +23,12 @@ public class Applicant {
         this.applicantPostcode = applicantPostcode;
         this.applicantState = applicantState;
         this.applicantEmploymentType = applicantEmploymentType;
+        this.applicantPassword = applicantPassword;
+
     }
+	public Applicant() {
+		// TODO Auto-generated constructor stub
+	}
 
     public String getApplicantID() {
         return applicantID;
@@ -94,4 +101,13 @@ public class Applicant {
     public void setApplicantEmploymentType(String applicantEmploymentType) {
         this.applicantEmploymentType = applicantEmploymentType;
     }
+
+	public String getApplicantPassword() {
+		return applicantPassword;
+	}
+
+	public void setApplicantPassword(String applicantPassword) {
+		this.applicantPassword = applicantPassword;
+	}
+    
 }

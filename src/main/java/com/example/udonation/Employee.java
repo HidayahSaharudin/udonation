@@ -5,8 +5,8 @@ public class Employee extends Applicant{
     public String employeeOccupation;
     public double employeeSalary;
 
-    public Employee(String applicantID, String applicantName, String applicantPhoneNumber, String applicantEmail, String applicantAddress, String applicantCity, int applicantPostcode, String applicantState, String applicantEmploymentType, String employeeOccupation, double employeeSalary) {
-        super(applicantID, applicantName, applicantPhoneNumber, applicantEmail, applicantAddress, applicantCity, applicantPostcode, applicantState, applicantEmploymentType);
+    public Employee(String applicantID, String applicantName, String applicantPhoneNumber, String applicantEmail, String applicantAddress, String applicantCity, int applicantPostcode, String applicantState, String applicantEmploymentType,String applicantPassword, String employeeOccupation, double employeeSalary) {
+        super(applicantID, applicantName, applicantPhoneNumber, applicantEmail, applicantAddress, applicantCity, applicantPostcode, applicantState, applicantEmploymentType,applicantPassword);
         this.employeeOccupation = employeeOccupation;
         this.employeeSalary = employeeSalary;
     }

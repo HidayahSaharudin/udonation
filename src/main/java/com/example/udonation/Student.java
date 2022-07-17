@@ -3,12 +3,12 @@ package com.example.udonation;
 public class Student extends Applicant{
 
     public String studentLevel;
-    public String studentInstitute;
+    public String studentInstitution;
 
-    public Student(String applicantID, String applicantName, String applicantPhoneNumber, String applicantEmail, String applicantAddress, String applicantCity, int applicantPostcode, String applicantState, String applicantEmploymentType, String studentLevel, String studentInstitute) {
-        super(applicantID, applicantName, applicantPhoneNumber, applicantEmail, applicantAddress, applicantCity, applicantPostcode, applicantState, applicantEmploymentType);
+    public Student(String applicantID, String applicantName, String applicantPhoneNumber, String applicantEmail, String applicantAddress, String applicantCity, int applicantPostcode, String applicantState, String applicantEmploymentType,String applicantPassword, String studentLevel, String studentInstitution) {
+        super(applicantID, applicantName, applicantPhoneNumber, applicantEmail, applicantAddress, applicantCity, applicantPostcode, applicantState, applicantEmploymentType,applicantPassword);
         this.studentLevel = studentLevel;
-        this.studentInstitute = studentInstitute;
+        this.studentInstitution = studentInstitution;
     }
 
     public String getStudentLevel() {
@@ -19,11 +19,11 @@ public class Student extends Applicant{
         this.studentLevel = studentLevel;
     }
 
-    public String getStudentInstitute() {
-        return studentInstitute;
+    public String getStudentInstitution() {
+        return studentInstitution;
     }
 
-    public void setStudentInstitute(String studentInstitute) {
-        this.studentInstitute = studentInstitute;
+    public void setStudentInstitute(String studentInstitution) {
+        this.studentInstitution = studentInstitution;
     }
 }

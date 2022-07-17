@@ -1,12 +1,9 @@
 package com.example.udonation;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -95,7 +92,7 @@ public class DonationHandler extends HttpServlet {
 
     private void updateDonation(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int donationID = Integer.parseInt(request.getParameter("donationID"));
         String donationName = request.getParameter("donationName");
         String donationDescription = request.getParameter("donationDescription");
         String donationOpenDate = request.getParameter("donationOpenDate");
@@ -103,7 +100,7 @@ public class DonationHandler extends HttpServlet {
 
         Donation don = new Donation();
 
-        don.setDonationID(id);
+        don.setDonationID(donationID);
         don.setDonationName(donationName);
         don.setDonationDescription(donationDescription);
         don.setDonationOpenDate(Date.valueOf(donationOpenDate));

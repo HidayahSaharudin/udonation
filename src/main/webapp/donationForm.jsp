@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,17 +8,20 @@
 </head>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <body>
-<nav>
-	<ul>
-		<div class = "logo">
-			<img src = "Image/Logo.png" alt = "logo">
-			<span class="add">Masjid Sultan Azlan Shah, Jalan Raja Musa Mahadi, Institut Tadbiran Islam Perak, 31400 Ipoh, Perak, Malaysia 05-5456779</span>
-			<li><a class="navi" href="#" onclick="document.location='LoginAccount.html'">LOG KELUAR</a>
-			<li><a class="navi" href="#" onclick="document.location='ViewAccount.html' ">AKAUN</a>
-			<li><a class="navi" href="#" onclick="document.location='buttonApplicationCommittee.html'">PERMOHONAN</a>
-			<li><a class="navi" href="#" onclick="document.location='donationList.jsp' ">BANTUAN</a>
-		</div>
-	</ul>
+   <nav>
+        <div class = "logo">
+            <img src = "Image/Logo.png" alt = "logo">
+            <span class="add">Masjid Sultan Azlan Shah, Jalan Raja Musa Mahadi, Institut Tadbiran Islam Perak, 31400 Ipoh, Perak, Malaysia 05-5456779</span>
+            
+            <form class="bar" method="get" action="CommitteeHandler">
+		        <input type="hidden" name="action" value="logoutCommittee">
+		       	<button class="navi" href="#" onclick="return confirm('Anda pasti untuk log keluar?');">LOG KELUAR</button>
+		    </form>
+            
+            <button class="navi" href="#" onclick="document.location='committeeAccount.jsp'">AKAUN</button>
+            <button class="navi" href="#" onclick="document.location='applicationType.jsp'">PERMOHONAN</button>
+            <button class="navi" href="#" onclick="document.location='donationList.jsp' ">BANTUAN</button>
+        </div>
 </nav>
 <div class="form">
 	<form class="donation" method="post" action="DonationHandler">
@@ -56,48 +61,62 @@
 	nav a.navi:hover{
 		margin-top: 10px;
 		color: #BBE9FE;}
-	.add {
-		position: absolute;
-		left: 90px;
-		width: 270px;
-		border: none;
-		padding: 20px 16px;;
-		font-size: 14px;
-		color: #455a64;
-		font-family: "Bahnschrift", "Courier New", monospace;}
-	.logo{
-		flex: 1;}
-	.logo a{
-		display: flex;
-		align-items: center;
-		font-size: 20px;
-	}
-	.logo img{
-		width: 100px;
-		height: 100px;
-		margin-right: 10px;
-	}
-	ul {
-		list-style-type: none;
-		overflow: hidden;
-		background-color: #BBE9FE;
-		height: 100px;
-		width:100%;}
-	li{
-		float: right;}
-	.navi {
-		display: block;
-		color: #455a64;
-		font-weight: bold;
-		text-align: center;
-		padding: 30px 16px;
-		text-decoration: none;
-		margin-top: 10px;
-		margin-right: 10px;
-	}
-	li a.navi:hover {
-		background-color: #617C8D;
-		height: 5px;}
+		
+      /*css for navigation bar*/
+     .add {
+     	position: absolute;
+	    left: 90px;
+	    width: 270px;
+	    border: none;
+	    padding: 20px 16px;;
+	    font-size: 14px;
+	    color: #455a64;
+	    font-family: "Bahnschrift", "Courier New", monospace;}
+	    
+	    nav {
+	    	background-color: #b3e6ff;
+	    }
+	    
+	    nav a.navi:hover{
+	        margin-top: 10px;
+	        color: #BBE9FE;}
+	    .logo{
+	        flex: 1;}
+	    .logo button {
+	        display: flex;
+	        align-items: center;
+	        font-size: 20px;
+	    }
+	    .logo img{
+	        width: 100px;
+	        height: 100px;
+	        margin-right: 10px;
+	    }
+	    button {
+	        float: right;}
+	    .navi {
+	        display: block;
+	        color: #455a64;
+	        font-weight: bold;
+	        text-align: center;
+	        padding: 30px 16px;
+	        text-decoration: none;
+	        margin-top: 10px;
+	        margin-right: 10px;
+	        border: none;
+	        background-color: #b3e6ff;
+	    }
+	    
+	    .bar {
+	    	display: inline;
+	    }
+	    
+	     button.navi:hover {
+	        background-color: #617C8D;
+	        height: 5px;
+	    }
+		/*css for navigation bar*/
+		
 	div.a{
 		position: relative;
 		display: block;}
@@ -105,7 +124,8 @@
 		background-color: #b3e6ff;
 		height: 50px;
 		width: 100px;
-		border-radius: 25px;}
+		border-radius: 25px;
+		margin-left: 10px;}
 	.button2{
 		background-color: #b3e6ff;
 		border-radius: 25px;
@@ -113,10 +133,10 @@
 		width: 100px;
 		padding: 15px 10px;
 		text-align: center;
-		display: inline-block;
+		display: inline;
 		cursor: pointer;
 		bottom: 23px;
-		margin-left: 1050px;}
+		margin-left: 500px;}
 	.box1{
 		height: 40px;
 		width: 800px;
@@ -137,7 +157,8 @@
 		margin-right: 20%;
 		background-color: #b3e6ff;}
 	.form{
-		padding: 40px;}
+		padding: 30px;
+		margin-left: -50px;}
 	.insideForm{
 		align: center;
 		padding: 50px;}

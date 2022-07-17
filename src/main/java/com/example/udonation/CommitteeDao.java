@@ -3,86 +3,90 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.sql.*;
-
 import static java.lang.System.out;
 
 public class CommitteeDao {
-    private final String dbURL = "jdbc:postgresql://localhost:5432/udonation";
-    private final String user = "postgres";
-    private final String pass = "syauqi2826";
-
+    private final String dbURL = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
+    private final String user = "hlcietwdsgkwyq";
+    private final String pass = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
     protected Connection getConnection() {
         Connection con = null;
         try {
+        	//Load the driver class
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection(dbURL, user, pass);
-        } catch (SQLException e) {
+        }
+        
+        catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        }
+        
+        catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return con;
 
     }
-    //insert Committee
-    public void insertCommittee (Committee committee) throws SQLException {
+    public void createCommittee(Committee com) throws SQLException {
 
         // try-with-resource statement will auto close the connection.
         try (Connection con = getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement
-                     ("INSERT INTO COMMITTEE"+"(committeeID,committeeName,committeePhoneNumber,committeeEmail,committeeAddress,committeeCity,committeePostcode,committeeState) VALUES"+"(?,?,?,?,?,?,?,?);"))
+             PreparedStatement ps = con.prepareStatement
+                     ("INSERT INTO COMMITTEE(COMMITTEEID,COMMITTEENAME,COMMITTEEPHONENUMBER,COMMITTEEEMAIL,COMMITTEEADDRESS,COMMITTEECITY,COMMITTEEPOSTCODE,COMMITTEESTATE,COMMITTEEPASSWORD) values(?,?,?,?,?,?,?,?,?)"))
         {
-            preparedStatement.setString(1, committee.getCommitteeID());
-            preparedStatement.setString(2, committee.getCommitteeName());
-            preparedStatement.setString(3, committee.getCommitteePhoneNumber());
-            preparedStatement.setString(4, committee.getCommitteeEmail());
-            preparedStatement.setString(5, committee.getCommitteeAddress());
-            preparedStatement.setString(6, committee.getCommitteeCity());
-            preparedStatement.setInt(7, committee.getCommitteePostcode());
-            preparedStatement.setString(8, committee.getCommitteeState());
-            out.println(preparedStatement);
-            preparedStatement.executeUpdate();
+            ps.setString(1, com.getCommitteeID());
+            ps.setString(2, com.getCommitteeName());
+            ps.setString(3, com.getCommitteePhoneNumber());
+            ps.setString(4, com.getCommitteeEmail());
+            ps.setString(5, com.getCommitteeAddress());
+            ps.setString(6, com.getCommitteeCity());
+            ps.setInt(7, com.getCommitteePostcode());
+            ps.setString(8, com.getCommitteeState());
+            ps.setString(9, com.getCommitteePassword());
+            out.println(ps);
+            ps.executeUpdate();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //delete Committee
-    public boolean deleteCommittee(String id) throws SQLException{
+    public boolean deleteCommittee (String committeeID) throws SQLException {
         boolean rowDeleted;
-        try(Connection con = getConnection();
-            PreparedStatement statement = con.prepareStatement("delete from committee where committeeID = ?;")){
-            statement.setString(1, id);
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM COMMITTEE WHERE COMMITTEEID=?");) {
+            statement.setString(1, committeeID);
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;
     }
-
-    //update Committee
-    public void updateCommittee(Committee committee) throws SQLException{
-        try(Connection con = getConnection();
-            PreparedStatement statement = con.prepareStatement
-                    ("update committee set committeeName = ?, committeePhoneNumber = ?, committeeEmail = ?, committeeAddress = ?, committeeCity = ?, committeePostcode = ?, committeeState = ? where committeeID = ?;")){
-
-            statement.setString(1, committee.getCommitteeName());
-            statement.setString(2, committee.getCommitteePhoneNumber());
-            statement.setString(3, committee.getCommitteeEmail());
-            statement.setString(4, committee.getCommitteeAddress());
-            statement.setString(5, committee.getCommitteeCity());
-            statement.setInt(6, committee.getCommitteePostcode());
-            statement.setString(7, committee.getCommitteeState());
-            statement.setString(8, committee.getCommitteeID());
-            statement.executeUpdate() ;
-        }
+    public boolean updateCommittee (Committee com) throws SQLException {
+    	
+    	boolean rowUpdated = true;
+        // try-with-resource statement will auto close the connection.
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement
+                     ("UPDATE committee set committeeName=?,committeePhoneNumber=?,committeeEmail=?,committeeAddress=?,committeeCity=?, committeePostcode=?, committeeState=? WHERE committeeID = ?");)
+        {
+        	ps.setString(1, com.getCommitteeName());
+            ps.setString(2, com.getCommitteePhoneNumber());
+            ps.setString(3, com.getCommitteeEmail());
+            ps.setString(4, com.getCommitteeAddress());
+            ps.setString(5, com.getCommitteeCity());
+            ps.setInt(6, com.getCommitteePostcode());
+            ps.setString(7, com.getCommitteeState());
+            ps.setString(8, com.getCommitteeID());
+            
+             //ps.executeUpdate();
+             rowUpdated = ps.executeUpdate() > 0;        
+    	}
 
         catch (Exception e) {
             e.printStackTrace();
         }
+        
+        return rowUpdated;
     }
 }
