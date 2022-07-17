@@ -186,7 +186,7 @@ public class ApplicantHandler extends HttpServlet {
     {
         String applicantID =request.getParameter("applicantID");
         applicantDao.deleteApplicant(applicantID);
-        response.sendRedirect("Index.jsp");
+        response.sendRedirect("index.jsp");
     }
 
     private void createSpouse(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
