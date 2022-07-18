@@ -15,20 +15,7 @@
       <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
    </head>
    <body>
-    <%
-    Class.forName("org.postgresql.Driver");
-    String DB_CONNECTION = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-    String DB_USER = "hlcietwdsgkwyq";
-    String DB_PASSWORD = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
-	
-	String applicantID=(String)session.getAttribute("applicantID"); 
-	String sql= "select a.applicantid, a.applicantname, a.applicantphonenumber, a.applicantemail, a.applicantaddress, a.applicantcity, a.applicantpostcode, a.applicantstate, a.applicantemploymenttype, a.applicantpassword, s.studentlevel, s.studentinstitution, e.employeeoccupation, e.employeesalary  from applicant a left outer join student s on(a.applicantid=s.applicantid) left outer join employee e on(a.applicantid=e.applicantid) where a.applicantid='"+applicantID+"';";
-    Connection con=DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
-    Statement stmt=con.createStatement();
-    ResultSet rs=stmt.executeQuery(sql);
-    while(rs.next())
-    {
-   %>  
+ 
    <nav>
         <div class = "logo">
             <img src = "Image/Logo.png" alt = "logo">
@@ -46,6 +33,20 @@
         </div>
 </nav>
    	  <form class=applicant name="myForm" action="ApplicantHandler" method="post" onsubmit ="return matchPassword()">
+   <%
+    Class.forName("org.postgresql.Driver");
+    String DB_CONNECTION = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
+    String DB_USER = "hlcietwdsgkwyq";
+    String DB_PASSWORD = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+	
+	String applicantID=(String)session.getAttribute("applicantID"); 
+	String sql= "select a.applicantid, a.applicantname, a.applicantphonenumber, a.applicantemail, a.applicantaddress, a.applicantcity, a.applicantpostcode, a.applicantstate, a.applicantemploymenttype, a.applicantpassword, s.studentlevel, s.studentinstitution, e.employeeoccupation, e.employeesalary  from applicant a left outer join student s on(a.applicantid=s.applicantid) left outer join employee e on(a.applicantid=e.applicantid) where a.applicantid='"+applicantID+"';";
+    Connection con=DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
+    Statement stmt=con.createStatement();
+    ResultSet rs=stmt.executeQuery(sql);
+    while(rs.next())
+    {
+   %> 
       <input type="hidden" name="applicantID" class="forInput"  value='<%=rs.getString("applicantID")%>'>
       <fieldset class="fieldset">
          <legend class="legend">KEMASKINI MAKLUMAT DIRI</legend>
