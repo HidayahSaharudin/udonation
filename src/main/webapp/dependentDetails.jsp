@@ -14,6 +14,22 @@
   </script>
 </head>
 <body>
+    <nav>
+        <div class = "logo">
+          <img src = "Image/Logo.png" alt = "logo">
+          <span class="add">Masjid Sultan Azlan Shah, Jalan Raja Musa Mahadi, Institut Tadbiran Islam Perak, 31400 Ipoh, Perak, Malaysia 05-5456779</span>
+      
+          <form class="bar" method="get" action="ApplicantHandler">
+            <input type="hidden" name="action" value="logoutApplicant">
+            <button class="navi" href="#" onclick="return confirm('Anda pasti untuk log keluar?');">LOG KELUAR</button>
+          </form>
+          <button class="navi" href="#" onclick="document.location='applicantAccount.jsp'"><i>AKAUN</i></button>
+          <button class="navi" href="#" onclick="document.location='applicantApplicationList.jsp'">PERMOHONAN</button>
+          <button class="navi" href="#" onclick="document.location='donationType.jsp' ">BANTUAN</button>
+          <button class="navi" href="#" ><ion-icon name="notifications-outline"></ion-icon></button>   
+        </div>
+    </nav>
+    <br>
 <%String applicantID = request.getParameter("applicantID"); %>	
 <div class="content" >
 	<br>
@@ -71,10 +87,66 @@ while(rs.next())
 </div>
 </body>
 <style>
-  body{
+    body{
     background-color: #E7E9EC;
     background-color: #e6f7ff;
     font: 1em Helvetica;}
+
+    /*css for navigation bar*/
+  .add {
+    position: absolute;
+    left: 90px;
+    width: 270px;
+    border: none;
+    padding: 20px 16px;;
+    font-size: 14px;
+    color: #455a64;
+    font-family: "Bahnschrift", "Courier New", monospace;
+}
+
+  nav {
+    background-color: #b3e6ff;
+  }
+
+  nav a.navi:hover{
+    margin-top: 10px;
+    color: #BBE9FE;}
+  .logo{
+    flex: 1;}
+  .logo button {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+  }
+  .logo img{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+  button {
+    float: right;}
+
+  .navi {
+    display: block;
+    color: #455a64;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: none;
+    background-color: #b3e6ff;
+  }
+
+  .bar {
+    display: inline;
+  }
+
+  button.navi:hover {
+    background-color: #617C8D;
+    height: 5px;
+  }
 
   span{
     color: red;}
@@ -89,122 +161,86 @@ while(rs.next())
     padding: 10px;
     display: inline;
     position: absolute;
-  }
+    margin-left: 64%;
+    margin-top: 5%;
+}
 
-  .button1:hover
-  {
-    background-color: #617C8D;
-  }
+.button1:hover {
+    background-color: #617C8D;}
 
-  .button2{
+.button2{
     background-color: #66c2ff;
     height: 40px;
     width: 27%;
-    padding: 15px 32px;
     border-style: groove;
     cursor: pointer;
     padding: 10px;
-    display: inline;
     position: absolute;
-    margin-left: 65%;
+    margin-left: 64%;
+    margin-top: 5%;
   }
   .button2:hover {
     background-color: #617C8D;}
 
-  label {
-    margin-bottom: 2px;
-    display: block;}
-
-  .forInput{
-    width: 100%;
-    margin-bottom: 25px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;}
-
-  input[type=text],[type=password]{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;}
-
-  .center{
-    float: center;
-    width: 90%;
-    height: 100%;
-    padding: 30px 20px;
-    background-color: white;
-    border-radius: 5px 5px 5px 5px;
-    min-height:500px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top:50px;
-    background :#FFFFFF;
-    position :relative;
-    text-align: justify;
-    margin-bottom: 50px;}
-
-  form
-  {
-    padding-left: 20px;
-    padding-right: 20px;
-    font-family: "Poppins", sans-serif;
-  }
-
-  .fieldset
-  {
-    float: center;
-    margin-top: 10px;
-    padding: 10px;
+.tambah {
     background-color: #b3e6ff;
-  }
-  .legend
-  {
-    font-weight: bold;
-    font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #000000;
-    margin-left: auto;
-    margin-right:auto;
-  }
+    color: black;
+    font-size: 15px;
+    width: 130px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid black;
+    cursor: pointer;
+    border-radius: 25px;
+    position: absolute;
+    top: 150px;
+    right: 60px;
+}
 
-  table, th, td
-  {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
+.action {
+		background-color: #b3e6ff;
+		font-size: 10px;
+		height: 35px;
+		width: 100px;
+		padding: 10px;
+		margin: 10px 0;
+		cursor: pointer;
+		border-radius: 25px;
+	}
 
-  .tambah, .buang
-  {
-    background-color: #66c2ff;
-    height: 20px;
-    border-style: groove;
-    border-radius: 3px;
-    border-color: #66c2ff;
-  }
+table, th, td {
+		border: 1px solid;
+		border-collapse: collapse;
+		text-align: left;
+		margin-top: 50px;
+		margin-left: auto;
+  		margin-right: auto;
+	}
+	
+td {
+    padding-left: 10px;
+    font-family: "Bahnschrift Light", "Courier New", monospace;
+}
 
-  .buang
-  {
-    margin-left: 15px;
-  }
+th {
+    text-align: center;
+        font-family: "Bahnschrift SemiBold", "Courier New", monospace;
+}
 
-  .tambah:hover, .buang:hover
-  {
-    background-color: #617C8D;
-  }
+#donationList tr:nth-child(even) {
+    background-color: #a7a7a7;
+}
+
+#donationList tr:nth-child(odd) {
+    background-color: #dfdddd;
+}
+
+#donationList th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #b3e6ff;
+    color: black;
+}
 </style>
-<script type="text/javascript">
-
-  function matchPassword()
-  {
-    var pw1 = document.getElementById("applicantPassword");
-    var pw2 = document.getElementById("password");
-    if(pw1 != pw2)
-    {
-      alert("Kata Laluan Tidak Sama");
-    }
-  }
-</script>
 </html>
