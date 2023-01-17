@@ -26,7 +26,7 @@
       <button class="navi" href="#" onclick="return confirm('Anda pasti untuk log keluar?');">LOG KELUAR</button>
     </form>
     <button class="navi" href="#" onclick="document.location='applicantAccount.jsp'">AKAUN</button>
-    <button class="navi" href="#"><i>PERMOHONAN</i></button>
+    <button class="navi" href="#" onclick="document.location='applicantApplicationList.jsp'"><i>PERMOHONAN</i></button>
     <button class="navi" href="#" onclick="document.location='donationType.jsp'">BANTUAN</button>
     <button class="navi" href="#" ><ion-icon name="notifications-outline"></ion-icon></button>  
   </div>
@@ -47,9 +47,9 @@
 			</tr>
 <%
 Class.forName("org.postgresql.Driver");
-String DB_CONNECTION = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-String DB_USER = "hlcietwdsgkwyq";
-String DB_PASSWORD = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+String DB_CONNECTION = "jdbc:postgresql://localhost:5432/udonation";
+String DB_USER = "postgres";
+String DB_PASSWORD = "syauqi2826";
 
 String applicantID=(String)session.getAttribute("applicantID");
 String sql= " select donationname, applicationid, applicationdate, applicationtime, applicationstatus from application join donation using(donationid) where applicantid='"+applicantID+"';";

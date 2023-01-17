@@ -17,7 +17,11 @@ public class Spouse {
         this.applicantID = applicantID;
     }
 
-    public String getSpouseID() {
+    public Spouse() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getSpouseID() {
         return spouseID;
     }
 

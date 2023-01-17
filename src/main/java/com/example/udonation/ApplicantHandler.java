@@ -67,7 +67,7 @@ public class ApplicantHandler extends HttpServlet {
   	        session.removeAttribute("applicantID");
   	        session.removeAttribute("applicantName");
   	        session.invalidate();
-  	        response.sendRedirect("index.jsp");
+  	        response.sendRedirect("Index.jsp");
   	}
 
     /**
@@ -92,7 +92,9 @@ public class ApplicantHandler extends HttpServlet {
             case "updateApplicant":
                 updateApplicant(request,response);
                 break;
-                
+            case "updateDependent":
+                updateDependent(request,response);
+                break;
             case "deleteApplicant":
                 deleteApplicant(request,response);
                 break;
@@ -102,7 +104,9 @@ public class ApplicantHandler extends HttpServlet {
             case "deleteDependent":
                  deleteDependent(request,response);
                  break;
-                 
+            case "deleteUpdateDependent":
+                deleteUpdateDependent(request,response);
+                break;
             case "loginApplicant":
             	loginApplicant(request, response);
             	break;
@@ -144,7 +148,7 @@ public class ApplicantHandler extends HttpServlet {
             applicant = new Applicant(applicantID, applicantName, applicantPhoneNumber, applicantEmail, applicantAddress, applicantCity, applicantPostcode, applicantState, applicantEmploymentType,applicantPassword);
             applicantDao.createApplicant(applicant);
         }
-        response.sendRedirect("applicantLogin.jsp");
+        response.sendRedirect("spouseRegistration.jsp?applicantID="+applicantID);
     }
     
     private void updateApplicant(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
@@ -191,23 +195,31 @@ public class ApplicantHandler extends HttpServlet {
 
     private void createSpouse(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
 
+    	Spouse spouse = new Spouse();
+    	
         String spouseID = request.getParameter("spouseID");
-        String spouseName = request.getParameter("spouseName");
-        String spousePhoneNumber = request.getParameter("spousePhoneNumber");
-        String spouseOccupation = request.getParameter("spouseOccupation");
-        Double spouseSalary = Double.parseDouble(request.getParameter("spouseSalary"));
-        String applicantID = request.getParameter("applicantID");
+        String applicantID = request.getParameter("applicantID");     
+        if(spouseID == null || spouseID.trim().length() == 1 ) {
+        	spouseDao.insertSpouse(spouse); 
+        }
+        else {
+            String spouseName = request.getParameter("spouseName");
+            String spousePhoneNumber = request.getParameter("spousePhoneNumber");
+            String spouseOccupation = request.getParameter("spouseOccupation");
+            Double spouseSalary = Double.parseDouble(request.getParameter("spouseSalary"));
+            
+            spouse = new Spouse(spouseID,spouseName,spousePhoneNumber,spouseOccupation,spouseSalary,applicantID);
+            spouseDao.insertSpouse(spouse);        	
+        }
 
-        Spouse spouse = new Spouse(spouseID,spouseName,spousePhoneNumber,spouseOccupation,spouseSalary,applicantID);
-        spouseDao.insertSpouse(spouse);
-        response.sendRedirect("spouse.jsp");
+        response.sendRedirect("dependentRegistration.jsp?applicantID="+applicantID);
     }
 
     private void deleteSpouse(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException
     {
         String applicantID = request.getParameter("applicantID");
         spouseDao.deleteSpouse(applicantID);
-        response.sendRedirect("otherInfoApplicantDetails.jsp");
+        response.sendRedirect("applicantAccount.jsp");
     }
 
     private void createDependent(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
@@ -219,15 +231,35 @@ public class ApplicantHandler extends HttpServlet {
             
             Dependent dependent = new Dependent(dependentID,dependentName,dependentRelationship,applicantID);
             dependentDao.insertDependent(dependent);
-            response.sendRedirect("dependent.jsp");
+            response.sendRedirect("dependentRegistration.jsp?applicantID="+applicantID);
     }
+    private void updateDependent(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException {
+
+        String dependentID = request.getParameter("dependentID");
+        String dependentName = request.getParameter("dependentName");
+        String dependentRelationship = request.getParameter("dependentRelationship");
+        String applicantID = request.getParameter("applicantID");
+        
+        Dependent dependent = new Dependent(dependentID,dependentName,dependentRelationship,applicantID);
+        dependentDao.insertDependent(dependent);
+        response.sendRedirect("dependentDetails.jsp?applicantID="+applicantID);
+}
 
     private void deleteDependent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException
     {
         String dependentID =request.getParameter("dependentID");
+        String applicantID = request.getParameter("applicantID");
         dependentDao.deleteDependent(dependentID);
-        response.sendRedirect("dependent.jsp");
+        response.sendRedirect("dependentRegistration.jsp?applicantID="+applicantID);
     }
+    private void deleteUpdateDependent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException
+    {
+        String dependentID =request.getParameter("dependentID");
+        String applicantID = request.getParameter("applicantID");
+        dependentDao.deleteDependent(dependentID);
+        response.sendRedirect("dependentDetails.jsp?applicantID="+applicantID);
+    }
+    
     public void loginApplicant(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException {
     	
@@ -242,9 +274,9 @@ public class ApplicantHandler extends HttpServlet {
 	    Connection con = null;
     	try {
     		Class.forName("org.postgresql.Driver");
-    	    String dbURL = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-    	    String user = "hlcietwdsgkwyq";
-    	    String pass = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+    	    String dbURL = "jdbc:postgresql://localhost:5432/udonation";
+    	    String user = "postgres";
+    	    String pass = "syauqi2826";
     	    con = DriverManager.getConnection(dbURL,user, pass);
     	    
     	    String sql ="SELECT * From applicant";

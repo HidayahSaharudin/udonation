@@ -10,6 +10,7 @@ pageEncoding="ISO-8859-1"%>
   </script>
 </head>
 <body>
+<%String applicantID = request.getParameter("applicantID"); %>
 <form class="applicant" name="myForm" formaction="ApplicantHandler" method="post" onsubmit ="return matchPassword()">
   <fieldset class="fieldset">
   <legend class="legend">MAKLUMAT DIRI</legend>
@@ -57,13 +58,16 @@ pageEncoding="ISO-8859-1"%>
     </select>
 
     <br><br>
-    <label for="pelajar">Jenis Pemohon?</label>
-    <input type="radio" name="applicantEmploymentType" value="Pelajar">Pelajar
-    <input type="radio" name="applicantEmploymentType" value="Pekerja">Bekerja
-    <input type="radio" name="applicantEmploymentType" value="Tidak Bekerja">Tidak Bekerja
-    
-    <br><br><br>
-    <label for="pelajar">Sila Isi Jika Anda Seorang Pelajar</label>
+ <div id="radioContainer">
+    <label for="pelajar">Jenis Pemohon?<span>*</span></label>
+    <input type="radio" name="applicantEmploymentType" value="Pelajar" id="Pelajar">Pelajar
+    <input type="radio" name="applicantEmploymentType" value="Pekerja" id="Pekerja">Bekerja
+    <input type="radio" name="applicantEmploymentType" value="Tidak Bekerja" id="Tidak Bekerja">Tidak Bekerja
+ </div>
+      
+    <br><br>
+ <div id="form1" style="display:none">
+    <label for="pelajar"><b>Sila Isi Maklumat Anda Sebagai Seorang Pelajar</b></label>
     <br>
     <label for="studentLevel">Peringkat Pengajian </label>
     <select name="studentLevel" id="studentLevel" class="forInput">
@@ -74,14 +78,18 @@ pageEncoding="ISO-8859-1"%>
     </select>
     <label for="studentInstitution">Institusi </label>
     <input type="text" name="studentInstitution" class="forInput" id="studentInstitution" placeholder="Sila masukkan institusi pengajian">
-
-    <br><br>
-    <label for="pekerja">Sila Isi Jika Anda Seorang Pekerja</label>
+ </div>
+ <div id="form2" style="display:none">
+    <label for="pekerja"><b>Sila Isi Maklumat Anda Sebagai Seorang Pekerja</b></label>
     <br>
     <label for="employeeOccupation">Jenis Pekerjaan </label>
     <input type="text" name="employeeOccupation" class="forInput" id="employeeOccupation" placeholder="Sila masukkan pekerjaan">
-    <label for="employeeSalary">Gaji </label>
-    <input type="number" name="employeeSalary" class="forInput" id="employeeSalary" placeholder="Sila masukkan gaji bulanan">    
+    <label for="employeeSalary">Gaji: RM </label>
+    <input type="number" name="employeeSalary" class="forInput" id="employeeSalary" placeholder="Sila masukkan gaji bulanan">  
+ </div>
+ <div id="form3" style="display:none">
+ 
+ </div>      
     </fieldset>
     
     <br><br>
@@ -94,7 +102,7 @@ pageEncoding="ISO-8859-1"%>
 
   <button class="button1" onclick="document.location='applicantLogin.jsp'">KEMBALI</button>
   <input type="hidden" name="action" value="createApplicant">
-  <button type="submit" class="button2" name="submit" formaction="ApplicantHandler">DAFTAR</button><br><br>
+  <button type="submit" class="button2" name="submit" formaction="ApplicantHandler">SETERUSNYA</button><br><br>
 
 </form>
 </body>
@@ -234,5 +242,29 @@ pageEncoding="ISO-8859-1"%>
       alert("Kata Laluan Tidak Sama");
     }
   }
+  const option1 = document.getElementById("Pelajar");
+  const option2 = document.getElementById("Pekerja");
+  const option3 = document.getElementById("Tidak Bekerja");
+  const form1 = document.getElementById("form1");
+  const form2 = document.getElementById("form2");
+  const form3 = document.getElementById("form3");
+
+  option1.addEventListener("change", function() {
+      form1.style.display = "block";
+      form2.style.display = "none";
+      form3.style.display = "none";
+  });
+
+  option2.addEventListener("change", function() {
+      form1.style.display = "none";
+      form2.style.display = "block";
+      form3.style.display = "none";
+  });
+
+  option3.addEventListener("change", function() {
+      form1.style.display = "none";
+      form2.style.display = "none";
+      form3.style.display = "block";
+  });
 </script>
 </html>

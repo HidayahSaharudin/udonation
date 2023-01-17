@@ -35,9 +35,9 @@
    	  <form class=applicant name="myForm" action="ApplicantHandler" method="post" onsubmit ="return matchPassword()">
    <%
     Class.forName("org.postgresql.Driver");
-    String DB_CONNECTION = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-    String DB_USER = "hlcietwdsgkwyq";
-    String DB_PASSWORD = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+   String DB_CONNECTION = "jdbc:postgresql://localhost:5432/udonation";
+   String DB_USER = "postgres";
+   String DB_PASSWORD = "syauqi2826";
 	
 	String applicantID=(String)session.getAttribute("applicantID"); 
 	String sql= "select a.applicantid, a.applicantname, a.applicantphonenumber, a.applicantemail, a.applicantaddress, a.applicantcity, a.applicantpostcode, a.applicantstate, a.applicantemploymenttype, a.applicantpassword, s.studentlevel, s.studentinstitution, e.employeeoccupation, e.employeesalary  from applicant a left outer join student s on(a.applicantid=s.applicantid) left outer join employee e on(a.applicantid=e.applicantid) where a.applicantid='"+applicantID+"';";
@@ -121,11 +121,11 @@
       <%}%>	 														
          </div>
             <%} %>
-         <button class="button1" onclick="document.location='applicantAccount.jsp'" onclick="return confirm('Anda pasti untuk membatalkan kemaskini akaun?');">KEMBALI</button>
          <input type="hidden" name="action" value="updateApplicant">
          <button type="submit" class="button2" name="submit" formaction="ApplicantHandler" onclick="return confirm('Anda pasti untuk mengemaskini akaun?');">KEMASKINI</button><br><br>
       </fieldset>
       </form>
+               <button class="button1" onclick="document.location='applicantAccount.jsp'" onclick="return confirm('Anda pasti untuk membatalkan kemaskini akaun?');">KEMBALI</button>
    </body>
    <style>
       body{

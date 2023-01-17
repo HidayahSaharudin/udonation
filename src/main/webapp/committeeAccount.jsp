@@ -16,9 +16,9 @@ pageEncoding="UTF-8"%>
 <body>
 <%
 Class.forName("org.postgresql.Driver");
-String DB_CONNECTION = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-String DB_USER = "hlcietwdsgkwyq";
-String DB_PASSWORD = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+String DB_CONNECTION = "jdbc:postgresql://localhost:5432/udonation";
+String DB_USER = "postgres";
+String DB_PASSWORD = "syauqi2826";
 
 String committeeID=(String)session.getAttribute("committeeID");
 String sql= "select * from committee where committeeID='"+ committeeID +"'";
@@ -47,10 +47,6 @@ while(rs.next())
 <form method="post">
   <input type="hidden" name="action" value="updateCommittee">
   <button class="butangg" class="action"  formaction="updateCommittee.jsp?id=${result.committeeID}">KEMASKINI</button>
-</form>
-<form method="post">
-      <input type="hidden" name="action" value="deleteCommittee">
-    <button type="submit" class="butang" name="submit" formaction="deleteCommittee.jsp?id=${result.committeeID}">PADAM</button><br><br>
 </form>
 <fieldset class="fieldset">
   <legend class="legend">MAKLUMAT DIRI</legend>

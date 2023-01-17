@@ -20,9 +20,9 @@ pageEncoding="UTF-8"%>
 <body>
 <%
 Class.forName("org.postgresql.Driver");
-String DB_CONNECTION = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-String DB_USER = "hlcietwdsgkwyq";
-String DB_PASSWORD = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+String DB_CONNECTION = "jdbc:postgresql://localhost:5432/udonation";
+String DB_USER = "postgres";
+String DB_PASSWORD = "syauqi2826";
 
 String applicantID = request.getParameter("applicantID");
 String applicationID = request.getParameter("applicationID");
@@ -39,14 +39,16 @@ while(rs.next())
         <img src = "Image/Logo.png" alt = "logo">
         <span class="add">Masjid Sultan Azlan Shah, Jalan Raja Musa Mahadi, Institut Tadbiran Islam Perak, 31400 Ipoh, Perak, Malaysia 05-5456779</span>
 
-        <form class="bar" method="get" action="ApplicantHandler">
-            <input type="hidden" name="action" value="logoutApplicant">
+        <form class="bar" method="get" action="CommitteeHandler">
+            <input type="hidden" name="action" value="logoutCommittee">
             <button class="navi" href="#" onclick="return confirm('Anda pasti untuk log keluar?');">LOG KELUAR</button>
         </form>
-        <button class="navi" href="#" onclick="document.location='applicantAccount.jsp'">AKAUN</button>
-        <button class="navi" href="#"><i>PERMOHONAN</i></button>
+
+        <button class="navi" href="#" onclick="document.location='committeeAccount.jsp'">AKAUN</button>
+        <button class="navi" href="#" ><i>PERMOHONAN</i></button>
         <button class="navi" href="#" onclick="document.location='donationList.jsp'">BANTUAN</button>
     </div>
+</nav>
 </nav>
 
 <fieldset class="fieldset">
@@ -117,10 +119,18 @@ while(rs.next())
    
       <%} %>
     </div>
-    <input type="hidden" name="action" value="verifyApplication">
+  </form>
+  <form method="post">
+      <input type="hidden" name="action" value="rejectApplication">
     <input type="hidden" name="applicationID" value="<%=applicationID%>">
     <input type="hidden" name="committeeID" value="<%=committeeID%>">
-    <button type="submit" class="button2" name="submit" formaction="ApplicationHandler" onclick="return confirm('Anda pasti untuk meluluskan permohonan?');">SAHKAN</button><br><br>
+    <button type="submit" class="button2" name="submit" formaction="ApplicationHandler" onclick="return confirm('Anda pasti untuk meluluskan permohonan?');">TOLAK</button><br><br>
+  </form>
+    <form method="post">
+      <input type="hidden" name="action" value="verifyApplication">
+    <input type="hidden" name="applicationID" value="<%=applicationID%>">
+    <input type="hidden" name="committeeID" value="<%=committeeID%>">
+    <button type="submit" class="button2" name="submit" formaction="ApplicationHandler" onclick="return confirm('Anda pasti untuk meluluskan permohonan?');">TERIMA</button><br><br>
   </form>
 </fieldset>
 </body>

@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Applicant Account</title>
+  <title>Maklumat Pasangan</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
@@ -36,7 +36,7 @@ pageEncoding="UTF-8"%>
 <br>
 
 <fieldset class="fieldset">
-  <legend class="legend">MAKLUMAT DIRI</legend>
+  <legend class="legend">Maklumat Pasangan</legend>
   <form class="applicant" name="myForm" action="" method="post">
 
     <div class='center'>
@@ -47,7 +47,7 @@ String DB_USER = "postgres";
 String DB_PASSWORD = "syauqi2826";
 
 String applicantID=(String)session.getAttribute("applicantID");
-String sql= "select a.applicantid, a.applicantname, a.applicantphonenumber, a.applicantemail, a.applicantaddress, a.applicantcity, a.applicantpostcode, a.applicantstate, a.applicantemploymenttype, a.applicantpassword, s.studentlevel, s.studentinstitution, e.employeeoccupation, e.employeesalary  from applicant a left outer join student s on(a.applicantid=s.applicantid) left outer join employee e on(a.applicantid=e.applicantid) where a.applicantid='"+applicantID+"';";
+String sql= "select spouseid,spousename, spousephonenumber, spouseoccupation,spousesalary, applicantID from spouse where applicantid='"+applicantID+"';";
 Connection con=DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
 Statement stmt=con.createStatement();
 ResultSet rs=stmt.executeQuery(sql);
@@ -56,74 +56,54 @@ while(rs.next())
 %>
       <input type="hidden" name="id" value='<%=rs.getString("applicantID") %>'/>
 
-      No Kad Pengenalan: <%=rs.getString("applicantID") %>
-      <br><br>
-
-      Nama penuh: <%=rs.getString("applicantName") %>
-      <br><br>
-
-      Nombor Telefon: <%=rs.getString("applicantPhoneNumber") %>
-      <br><br>
-
-      Alamat Email: <%=rs.getString("applicantEmail") %>
-      <br><br>
-
-      Alamat Rumah: <%=rs.getString("applicantAddress") %>
-      <br><br>
-
-      Bandar: <%=rs.getString("applicantCity") %>
-      <br><br>
-
-      Poskod: <%=rs.getString("applicantPostcode") %>
-      <br><br>
-
-      Negeri: <%=rs.getString("applicantState") %>
-      <br><br>
-
-      Jenis Pemohon: <%=rs.getString("applicantEmploymentType") %>
-      <br><br>
-      
-      <%if(rs.getString("studentLevel")==null) {%>
-       Peringkat Pengajian: Tiada Info
+      <%if(rs.getString("spouseID").equalsIgnoreCase(" ")) {%>
+      No Kad Pengenalan: Tiada Info
       <br><br>   	  
       <%}else {%>
-       Peringkat Pengajian: <%=rs.getString("studentLevel") %>
-      <br><br>   	  
+      No Kad Pengenalan: <%=rs.getString("spouseID") %>
+       <br><br> 	  
       <%}%>
       
-      <%if(rs.getString("studentInstitution")==null) {%>
-       Institusi: Tiada Info
+      <%if(rs.getString("spouseName").equalsIgnoreCase(" ")) {%>
+      Nama penuh: Tiada Info
       <br><br>   	  
       <%}else {%>
-       Institusi: <%=rs.getString("studentInstitution") %>
-      <br><br>   	  
-      <%}%>
-
-      <%if(rs.getString("employeeOccupation")==null) {%>
-       Pekerjaan: Tiada Info
-      <br><br>   	  
-      <%}else {%>
-       Pekerjaan: <%=rs.getString("employeeOccupation") %>
-      <br><br>   	  
+      Nama penuh: <%=rs.getString("spouseName") %>
+      <br><br>	  
       <%}%>
       
-      <%if(rs.getString("employeeSalary")==null) {%>
-       Gaji: Tiada Info
+      <%if(rs.getString("spousePhoneNumber").equalsIgnoreCase(" ")) {%>
+      Nombor Telefon: Tiada Info
       <br><br>   	  
       <%}else {%>
-       Gaji: <%=rs.getString("employeeSalary") %>
-      <br><br>   	  
+      Nombor Telefon: <%=rs.getString("spousePhoneNumber") %>
+      <br><br>	  
       <%}%>
-   
+      
+      <%if(rs.getString("spouseOccupation").equalsIgnoreCase(" ")) {%>
+      Pekerjaan: Tiada Info
+      <br><br>   	  
+      <%}else {%>
+      Pekerjaan: <%=rs.getString("spouseOccupation") %>
+      <br><br>	  
+      <%}%>
+      
+      <%if(rs.getDouble("spouseSalary")==0) {%>
+      Gaji Bulanan: Tiada Info
+      <br><br>   	  
+      <%}else {%>
+      Gaji Bulanan: <%=rs.getString("spouseSalary") %>
+      <br><br>  
+      <%}%>
+         
       <%} %>
     </div>  
-  <a class="add" href=spouseDetails.jsp?applicantID=<%=applicantID %>>Maklumat Pasangan</a>
-  <br><br>
-  <a class="add" href=dependentDetails.jsp?applicantID=<%=applicantID %>>Maklumat Tanggungan</a>
     
-    <input type="hidden" name="action" value="updateApplicant">
-    <button type="submit" class="button1" name="submit" formaction="updateApplicant.jsp?id=<%=applicantID%>">KEMASKINI</button><br><br>
+         
+         <input type="hidden" name="action" value="updateSpouse">
+         <br><br><br>
   </form>
+  <button class="button1" onclick="document.location='applicantAccount.jsp'" onclick="return confirm('Anda pasti untuk membatalkan kemaskini akaun?');">KEMBALI</button><br><br>
 </fieldset>
 </body>
 <style>

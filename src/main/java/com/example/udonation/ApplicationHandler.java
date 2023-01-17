@@ -53,7 +53,10 @@ public class ApplicationHandler extends HttpServlet {
                         break;
           	      case "verifyApplication":
           	    	    verifyApplication(request,response);
-          	    	//untuk committee update tuple dlm application 
+          	    	//untuk committee update tuple dlm application
+          	      case "rejectApplication":
+        	    	    rejectApplication(request,response);
+        	    	//untuk committee update tuple dlm application 
                         break;
           	      case "selectApplicationList":
           	    	    selectApplicationList(request,response);
@@ -98,6 +101,18 @@ private void verifyApplication(HttpServletRequest request, HttpServletResponse r
 		applicationDao.verifyApplication(application);
 		response.sendRedirect("applicationType.jsp");
 	}
+private void rejectApplication(HttpServletRequest request, HttpServletResponse response)throws IOException, SQLException{
 	
+    int applicationID = Integer.parseInt(request.getParameter("applicationID"));
+	String committeeID = request.getParameter("committeeID");
+	
+	Application application = new Application();
+	
+	application.setApplicationID(applicationID);
+	application.setCommitteeID(committeeID);
+	
+	applicationDao.rejectApplication(application);
+	response.sendRedirect("applicationType.jsp");
+    }
 
 }

@@ -14,9 +14,9 @@
 </head>
 <body>
 <sql:setDataSource var="ic" driver="org.postgresql.Driver"
-                   url="jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0"
-                   user = "hlcietwdsgkwyq"
-                   password="f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1"/>
+                   url="jdbc:postgresql://localhost:5432/udonation"
+                   user = "postgres"
+                   password="syauqi2826"/>
 <sql:query dataSource="${ic}" var="oc">
 	SELECT donationID, donationName, donationDescription, TO_CHAR(donationOpenDate, 'dd/MM/YYYY')donationOpenDate, TO_CHAR(donationCloseDate, 'dd/MM/YYYY') donationCloseDate FROM donation where donationID>0
 </sql:query>
@@ -32,7 +32,7 @@
             
             <button class="navi" href="#" onclick="document.location='applicantAccount.jsp'">AKAUN</button>
             <button class="navi" href="#" onclick="document.location='applicantApplicationList.jsp'">PERMOHONAN</button>
-            <button class="navi" href="#"><i>BANTUAN</i></button>
+            <button class="navi" href="#" onclick="document.location='donationType.jsp'"><i>BANTUAN</i></button>
              <button class="navi" href="#" ><ion-icon name="notifications-outline"></ion-icon></button>  
         </div>
 </nav>

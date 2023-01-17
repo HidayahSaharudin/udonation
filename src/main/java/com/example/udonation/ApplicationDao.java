@@ -15,9 +15,9 @@ import static java.lang.System.out;
 //import java.sql.*;
 
 public class ApplicationDao {
-    private final String dbURL = "jdbc:postgresql://ec2-3-228-235-79.compute-1.amazonaws.com/ddrev47ip327l0";
-    private final String user = "hlcietwdsgkwyq";
-    private final String pass = "f6078446e3932c85a4d99b3753e1b04295a6add4a27ee4fdc3649c1efb1a04f1";
+    private final String dbURL = "jdbc:postgresql://localhost:5432/udonation";
+    private final String user = "postgres";
+    private final String pass = "syauqi2826";
 
     protected Connection getConnection() {
         Connection con = null;
@@ -95,6 +95,22 @@ public class ApplicationDao {
         try (Connection con = getConnection();
              PreparedStatement preparedStatement = con.prepareStatement
                      ("update application set applicationStatus = 'Lulus', committeeID = ? where applicationID = ?;"))
+        {
+            preparedStatement.setString(1, application.getCommitteeID());
+            preparedStatement.setInt(2, application.getApplicationID());
+            out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void rejectApplication (Application application) throws SQLException {
+
+        // try-with-resource statement will auto close the connection.
+        try (Connection con = getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement
+                     ("update application set applicationStatus = 'Gagal', committeeID = ? where applicationID = ?;"))
         {
             preparedStatement.setString(1, application.getCommitteeID());
             preparedStatement.setInt(2, application.getApplicationID());

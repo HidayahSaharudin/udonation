@@ -1,10 +1,10 @@
 package com.example.udonation;
 
 public class Dependent {
-    public String dependentID;
-    public String dependentName;
-    public String dependentRelationship;
-    public String applicantID;
+    public String dependentID ="Tiada Info";
+    public String dependentName ="Tiada Info";
+    public String dependentRelationship ="Tiada Info";
+    public String applicantID ="Tiada Info";
 
     public Dependent(String dependentID, String dependentName, String dependentRelationship, String applicantID) {
         this.dependentID = dependentID;
